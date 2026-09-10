@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Chatbot - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">💬</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">AI Care Assistant</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/ai-diagnosis" class="nav-link">AI Diagnosis</a>
+          <a href="/chatbot" class="nav-link nav-link--active">AI Chatbot</a>
+          <a href="/profile" class="nav-link">Profile</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-layout">
+      <!-- Chat window -->
+      <section class="chat-window fade-in">
+        <header class="chat-header">
+          <div class="logo-badge" style="width:32px; height:32px; font-size:18px;">🤖</div>
+          <div>
+            <div class="section-heading" style="font-size:16px; margin-bottom:2px;">AI Care Assistant</div>
+            <p class="section-subtitle" style="font-size:12px;">
+              Ask about your diagnosis, treatment options, or recovery journey.
+            </p>
+          </div>
+        </header>
+
+        <div class="chat-body" data-chat="body"></div>
+
+        <div class="chat-input-row">
+          <input
+            type="text"
+            class="chat-input"
+            placeholder="Ask a question about your condition…"
+            data-chat="input"
+          >
+          <button type="button" class="btn btn-primary" style="padding:8px 14px; font-size:13px;" data-chat="send">
+            Send
+          </button>
+        </div>
+      </section>
+
+      <!-- Sidebar info -->
+      <aside class="card-glass fade-in">
+        <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">Quick topics</h2>
+        <p class="section-subtitle">
+          Use a quick topic to start the conversation. This chatbot should be wired to a safe,
+          medically‑supervised backend before real use.
+        </p>
+
+        <div class="chat-suggestions">
+          <button type="button" class="chat-chip" data-chat="quick">Causes</button>
+          <button type="button" class="chat-chip" data-chat="quick">Treatment</button>
+          <button type="button" class="chat-chip" data-chat="quick">Diet Plan</button>
+          <button type="button" class="chat-chip" data-chat="quick">Recovery Time</button>
+        </div>
+
+        <section style="margin-top:18px;">
+          <h3 class="section-heading" style="font-size:16px; margin-bottom:4px;">Dark mode</h3>
+          <p class="section-subtitle">
+            Toggle dark mode from the top navigation bar. Your preference is stored locally so the
+            app remembers it on your next visit.
+          </p>
+        </section>
+
+        <section style="margin-top:16px;">
+          <h3 class="section-heading" style="font-size:16px; margin-bottom:4px;">Important notice</h3>
+          <p class="section-subtitle">
+            This conversational UI is not a medical device. All information must be reviewed by a
+            licensed clinician before you make any health decisions.
+          </p>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. Connect this chat to your LLM backend for real AI responses.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

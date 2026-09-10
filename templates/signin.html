@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">🧠</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">Welcome back</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signup" class="btn btn-outline">Create Account</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="auth-page signin-creative-page">
+      <section class="signin-creative-shell fade-in">
+        <aside class="signin-creative-hero">
+          <div class="signin-hero-overlay"></div>
+          <div class="signin-hero-content">
+            <p class="chip">Intelligent Care Platform</p>
+            <h1 class="signin-hero-title">Welcome back to your AI healthcare cockpit</h1>
+            <p class="signin-hero-subtitle">
+              Securely access diagnosis workflows, result insights, and appointment actions from one beautiful workspace.
+            </p>
+
+            <div class="signin-hero-metrics">
+              <article class="signin-hero-metric">
+                <div class="signin-hero-metric-value">2.1s</div>
+                <div class="signin-hero-metric-label">Average diagnosis runtime</div>
+              </article>
+              <article class="signin-hero-metric">
+                <div class="signin-hero-metric-value">99.2%</div>
+                <div class="signin-hero-metric-label">Platform uptime</div>
+              </article>
+              <article class="signin-hero-metric">
+                <div class="signin-hero-metric-value">12k+</div>
+                <div class="signin-hero-metric-label">Clinician users</div>
+              </article>
+            </div>
+          </div>
+        </aside>
+
+        <div class="signin-creative-form-wrap">
+          <div class="signin-creative-card">
+            <header class="auth-form-header">
+              <p class="chip chip-success">Secure Sign In</p>
+              <h2 class="auth-form-title">Sign in to continue</h2>
+              <p class="auth-form-subtitle">
+                Use your account to start diagnosis, view reports, and manage appointments.
+              </p>
+            </header>
+
+            <form method="POST" action="/signin" class="auth-form" data-form="signin">
+              <div class="form-field">
+                <label class="form-label" for="signin_email">Email</label>
+                <input id="signin_email" name="email" type="email" class="input" autocomplete="email" placeholder="doctor@hospital.com">
+              </div>
+
+              <div class="form-field password-field">
+                <label class="form-label" for="signin_password">Password</label>
+                <input
+                  id="signin_password"
+                  name="password"
+                  type="password"
+                  class="input"
+                  autocomplete="current-password"
+                  placeholder="Enter your password"
+                >
+                <span class="password-toggle" data-password-toggle="signin_password">Show</span>
+              </div>
+
+              <div class="auth-extra-row">
+                <label class="checkbox-inline">
+                  <input type="checkbox" name="remember">
+                  <span>Remember this device</span>
+                </label>
+                <a href="#" class="section-subtitle" style="font-size:12px;">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="btn btn-primary signin-submit-btn">
+                <span>Sign In</span>
+                <span>→</span>
+              </button>
+
+              <div class="auth-or-divider">
+                <span>or continue with</span>
+              </div>
+
+              <div class="social-row">
+                <button type="button" class="social-btn">
+                  <span class="social-icon">G</span>
+                  <span>Google</span>
+                </button>
+                <button type="button" class="social-btn">
+                  <span class="social-icon">in</span>
+                  <span>LinkedIn</span>
+                </button>
+              </div>
+
+              <p class="auth-secondary-text signin-secondary-text">
+                New to the platform?
+                <a href="/signup">Create an account</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. All rights reserved.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

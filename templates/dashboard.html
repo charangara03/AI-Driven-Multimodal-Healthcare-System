@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">🧠</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">Care dashboard</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/dashboard" class="nav-link nav-link--active">Dashboard</a>
+          <a href="/doctors" class="nav-link">Find Doctors</a>
+          <a href="/book-appointment" class="nav-link">Book Appointment</a>
+          <a href="/my-appointments" class="nav-link">My Appointments</a>
+          <a href="/ai-diagnosis" class="nav-link">AI Diagnosis</a>
+          <a href="/chatbot" class="nav-link">AI Chatbot</a>
+          <a href="/profile" class="nav-link">Profile</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="app-layout">
+      <!-- Left column: welcome + summary -->
+      <aside class="app-sidebar fade-in">
+        <section class="card-glass">
+          <p class="chip chip-success">Welcome back</p>
+          <h1 class="section-heading" style="margin-top:8px;">Your health snapshot</h1>
+          <p class="section-subtitle">
+            View your latest AI diagnoses, assigned doctors, and upcoming appointments in one place.
+          </p>
+        </section>
+
+        <section class="card-glass">
+          <header class="analyze-row" style="margin-top:0;">
+            <div>
+              <h2 class="section-heading" style="font-size:18px; margin-bottom:2px;">Health summary</h2>
+              <p class="section-subtitle">Automatically updated from your last AI run.</p>
+            </div>
+            <span class="tag-pill">Last 30 days</span>
+          </header>
+
+          <div class="summary-grid" style="margin-top:14px;">
+            <div>
+              <p class="summary-card-label">Last diagnosis</p>
+              <p class="summary-card-value">Brain MRI</p>
+              <p class="section-subtitle" style="font-size:12px;">Glioma (suspected)</p>
+            </div>
+            <div>
+              <p class="summary-card-label">Risk level</p>
+              <div class="risk-pill risk-pill-medium">Medium risk</div>
+            </div>
+            <div>
+              <p class="summary-card-label">Assigned doctor</p>
+              <p class="summary-card-value" style="font-size:15px;">Dr. Elena Rao</p>
+              <p class="section-subtitle" style="font-size:12px;">Neuro‑oncologist</p>
+            </div>
+            <div>
+              <p class="summary-card-label">Next appointment</p>
+              <p class="summary-card-value" style="font-size:15px;">Tue, 10:30</p>
+              <p class="section-subtitle" style="font-size:12px;">On-site consultation</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-glass">
+          <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">Risk metrics</h2>
+          <p class="section-subtitle">Illustrative only – real values come from the backend.</p>
+          <div class="metric-list" style="margin-top:10px;">
+            <div>
+              <div class="metric-row">
+                <span>Oncology risk index</span>
+                <span>0.82</span>
+              </div>
+              <div class="metric-bar-track">
+                <div class="metric-bar-fill" style="width:82%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="metric-row">
+                <span>Respiratory risk index</span>
+                <span>0.24</span>
+              </div>
+              <div class="metric-bar-track">
+                <div class="metric-bar-fill" style="width:24%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="metric-row">
+                <span>Infection risk index</span>
+                <span>0.37</span>
+              </div>
+              <div class="metric-bar-track">
+                <div class="metric-bar-fill" style="width:37%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Right column: upload + quick actions -->
+      <section class="card-glass fade-in">
+        <header class="analyze-row" style="margin-top:0;">
+          <div>
+            <h2 class="section-heading" style="font-size:20px; margin-bottom:2px;">
+              Run a new AI diagnosis
+            </h2>
+            <p class="section-subtitle">
+              Upload MRI or radiology images and choose which disease model to run.
+            </p>
+          </div>
+          <div class="pill-tabs">
+            <button type="button" class="pill-tab pill-tab--active">Patient view</button>
+            <button type="button" class="pill-tab">Doctor view</button>
+          </div>
+        </header>
+
+        <div class="upload-area-large" data-upload="diagnosis">
+          <input type="file" accept="image/*" hidden data-upload-input="diagnosis">
+          <div class="upload-icon-circle">📤</div>
+          <p class="upload-text-main">Drag & drop your image or click to browse</p>
+          <p class="upload-text-sub">MRI, CT, X‑ray or dermoscopy images are supported.</p>
+
+          <div class="pill-select-row">
+            <button type="button" class="pill-select-option" data-disease-option="brain_tumor">Brain tumor</button>
+            <button type="button" class="pill-select-option" data-disease-option="pneumonia">Pneumonia</button>
+            <button type="button" class="pill-select-option" data-disease-option="malaria">Malaria</button>
+            <button type="button" class="pill-select-option" data-disease-option="skin_cancer">Skin cancer</button>
+          </div>
+
+          <p class="upload-hint" data-upload-hint="diagnosis">
+            Select a disease type, then add an image to start.
+          </p>
+
+          <div class="upload-preview">
+            <img alt="Preview" data-upload-preview="diagnosis">
+          </div>
+
+          <div class="analyze-row">
+            <button type="button" class="btn btn-primary" data-action="analyze">
+              <span class="spinner" style="display:none;"></span>
+              <span data-label>Run AI Diagnosis</span>
+            </button>
+            <p class="section-subtitle" data-loading-label style="font-size:12px;">
+              No image running yet.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. Dashboard experience only – connect to your Flask backend for real data.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

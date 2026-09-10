@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Diagnosis - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">🧠</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">AI Diagnosis</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/ai-diagnosis" class="nav-link nav-link--active">AI Diagnosis</a>
+          <a href="/doctors" class="nav-link">Find Doctors</a>
+          <a href="/my-appointments" class="nav-link">My Appointments</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-layout-full">
+      <section class="card-glass fade-in">
+        <header class="analyze-row" style="margin-top:0;">
+          <div>
+            <h1 class="section-heading">AI Diagnosis workspace</h1>
+            <p class="section-subtitle">
+              A focused experience for running image-based diagnosis across supported diseases.
+            </p>
+          </div>
+          <span class="chip chip-warning">Demo only</span>
+        </header>
+
+        <div style="display:grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1.2fr); gap:24px; margin-top:18px;">
+          <!-- Upload panel -->
+          <div>
+            <div class="upload-area-large" data-upload="diagnosis">
+              <input type="file" accept="image/*" hidden data-upload-input="diagnosis">
+              <div class="upload-icon-circle">📤</div>
+              <p class="upload-text-main">Drop an MRI or X‑ray image</p>
+              <p class="upload-text-sub">Your file is streamed to the Flask backend and never logged in the browser.</p>
+
+              <div class="pill-select-row">
+                <button type="button" class="pill-select-option" data-disease-option="brain_tumor">Brain tumor</button>
+                <button type="button" class="pill-select-option" data-disease-option="pneumonia">Pneumonia</button>
+                <button type="button" class="pill-select-option" data-disease-option="malaria">Malaria</button>
+                <button type="button" class="pill-select-option" data-disease-option="skin_cancer">Skin cancer</button>
+              </div>
+
+              <p class="upload-hint" data-upload-hint="diagnosis">
+                Choose a disease model, then upload your image.
+              </p>
+
+              <div class="upload-preview">
+                <img alt="Preview" data-upload-preview="diagnosis">
+              </div>
+
+              <div class="analyze-row">
+                <button type="button" class="btn btn-primary" data-action="analyze">
+                  <span class="spinner" style="display:none;"></span>
+                  <span data-label>Run AI Diagnosis</span>
+                </button>
+                <p class="section-subtitle" data-loading-label style="font-size:12px;">
+                  Waiting for input image.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: live summary -->
+          <div>
+            <div class="card-glass" style="margin-bottom:16px;">
+              <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">
+                Live diagnosis summary
+              </h2>
+              <p class="section-subtitle">
+                When the backend responds, your last result is cached here and on the dedicated result page.
+              </p>
+              <div class="metric-list" style="margin-top:12px;">
+                <div class="metric-row">
+                  <span>Disease name</span>
+                  <span data-result="disease">–</span>
+                </div>
+                <div class="metric-row">
+                  <span>Confidence</span>
+                  <span data-result="confidence">–</span>
+                </div>
+                <div class="metric-row">
+                  <span>Status</span>
+                  <span data-result="status">–</span>
+                </div>
+              </div>
+              <a href="/diagnosis-result" class="btn btn-outline" style="margin-top:14px;">
+                View full result page
+              </a>
+            </div>
+
+            <div class="card-glass">
+              <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">
+                Safety disclaimer
+              </h2>
+              <p class="section-subtitle">
+                This UI is intended for research and prototyping. Any deployment into real clinical
+                workflows must undergo full validation and regulatory review.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. Connect to your Flask `/predict` endpoint to enable live inference.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

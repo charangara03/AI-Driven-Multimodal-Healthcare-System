@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">🏥</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">Create your secure account</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/doctors" class="nav-link">Find Doctors</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Sign In</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-shell fade-in">
+        <!-- Left: Form -->
+        <div class="auth-form-pane">
+          <header class="auth-form-header">
+            <p class="chip chip-success">Secure Healthcare Workspace</p>
+            <h1 class="auth-form-title">Create your account</h1>
+            <p class="auth-form-subtitle">
+              Set up your profile as a patient or a doctor to access AI diagnosis and appointments.
+            </p>
+          </header>
+
+          <form method="POST" action="/signup" class="auth-form" data-form="signup">
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="full_name">Full name</label>
+                <input id="full_name" name="full_name" type="text" class="input" autocomplete="name">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="role">Role</label>
+                <select id="role" name="role" class="select">
+                  <option value="">Select</option>
+                  <option value="patient">Patient</option>
+                  <option value="doctor">Doctor</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="email">Email</label>
+                <input id="email" name="email" type="email" class="input" autocomplete="email">
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" class="input" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field password-field">
+                <label class="form-label" for="password">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  class="input"
+                  data-password-strength="source"
+                  autocomplete="new-password"
+                >
+                <span class="password-toggle" data-password-toggle="password">Show</span>
+                <div class="password-strength-bar">
+                  <div class="password-strength-fill"></div>
+                </div>
+              </div>
+              <div class="form-field password-field">
+                <label class="form-label" for="confirm_password">Confirm password</label>
+                <input
+                  id="confirm_password"
+                  name="confirm_password"
+                  type="password"
+                  class="input"
+                  autocomplete="new-password"
+                >
+                <span class="password-toggle" data-password-toggle="confirm_password">Show</span>
+              </div>
+            </div>
+
+            <div class="auth-extra-row">
+              <label class="checkbox-inline">
+                <input type="checkbox" required>
+                <span>I agree to the data privacy & processing policy.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">
+              Create account
+            </button>
+
+            <div class="auth-or-divider">
+              <span>or continue with</span>
+            </div>
+
+            <div class="social-row">
+              <button type="button" class="social-btn">
+                <span class="social-icon">G</span>
+                <span>Google</span>
+              </button>
+              <button type="button" class="social-btn">
+                <span class="social-icon">in</span>
+                <span>LinkedIn</span>
+              </button>
+            </div>
+
+            <p class="auth-secondary-text">
+              Already have an account?
+              <a href="/signin">Sign in</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- Right: Visual -->
+        <aside class="auth-visual-pane">
+          <div class="auth-visual-overlay"></div>
+          <div class="auth-visual-inner">
+            <div class="auth-visual-cards">
+              <article class="auth-visual-card">
+                <h3 class="auth-visual-card-title">AI triage in seconds</h3>
+                <p class="auth-visual-card-text">
+                  Upload MRI or radiology images and get a structured risk profile that can be
+                  attached to your patient record.
+                </p>
+              </article>
+              <article class="auth-visual-card">
+                <h3 class="auth-visual-card-title">Built for clinicians</h3>
+                <p class="auth-visual-card-text">
+                  Designed with radiologists and oncologists for a workflow that matches real
+                  hospital environments.
+                </p>
+              </article>
+              <article class="auth-visual-card">
+                <h3 class="auth-visual-card-title">Patients stay in control</h3>
+                <p class="auth-visual-card-text">
+                  Granular consent and audit history keep patients informed of how their data is
+                  used.
+                </p>
+              </article>
+            </div>
+
+            <div class="auth-visual-micro">
+              <strong>Premium healthcare SaaS</strong>
+              <p>
+                This is a demo interface only. The backend integration and regulatory approval must
+                be completed before real clinical use.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. All rights reserved.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

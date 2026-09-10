@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medical Image Diagnosis (Legacy)</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+</head>
+<body class="homepage-container">
+
+  <!-- Header -->
+  <header class="homepage-header">
+    <div class="header-content">
+      <div class="header-left">
+        <a href="#" class="logo-section">
+          <div class="logo-icon">🧠</div>
+          <div class="logo-text">AI Diagnosis</div>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="#" class="header-button">Home</a>
+        <a href="#" class="header-button">About</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="homepage-main">
+    <div class="homepage-wrapper">
+
+      <!-- Sidebar -->
+      <aside class="disease-sidebar">
+        <h2 class="sidebar-title">Select Disease Type</h2>
+        <div class="disease-list" id="disease-list"></div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <div class="content-header">
+          <h2>Medical Image Diagnosis</h2>
+          <p>Upload an image to get AI-powered diagnosis</p>
+        </div>
+
+        <div class="upload-card">
+          <div id="upload-area" class="upload-area">
+
+            <!-- Preview Image -->
+            <img id="preview-img"
+                 style="display:none;
+                        max-width:100%;
+                        max-height:350px;
+                        border-radius:16px;
+                        margin-bottom:20px;" />
+
+            <!-- Upload Content -->
+            <div id="upload-content">
+              <div class="upload-icon">📤</div>
+              <h3>Upload Medical Image</h3>
+              <p>Drag and drop your image here, or click to browse</p>
+
+              <input type="file" id="image-upload" accept="image/*" class="file-input">
+              <label for="image-upload" class="upload-button">Choose File</label>
+
+              <p id="upload-hint" class="upload-hint">
+                ⚠️ Please select a disease type first
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Prediction Result -->
+        <div id="result-card" class="result-card" style="display:none;">
+          <div class="result-header">
+            <h3>Diagnosis Result</h3>
+            <div id="status-badge" class="status-badge">Status</div>
+          </div>
+          <div class="result-content">
+            <div class="prediction-text">
+              <strong>Prediction:</strong> <span id="prediction"></span>
+            </div>
+            <div class="confidence-bar">
+              <div class="confidence-label">
+                <span>Confidence Score</span>
+                <span id="confidence-value" class="confidence-value"></span>
+              </div>
+              <div class="confidence-track">
+                <div id="confidence-fill" class="confidence-fill"></div>
+              </div>
+            </div>
+          </div>
+          <div class="disclaimer">
+            <p>⚠️ <strong>Disclaimer:</strong> This is an AI-assisted tool for informational purposes only. 
+            Please consult with a qualified healthcare professional for accurate diagnosis and treatment.</p>
+          </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-content">
+              <h3>95%</h3>
+              <p>Accuracy Rate</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-content">
+              <h3>2s</h3>
+              <p>Avg. Processing</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <h3>5+</h3>
+              <p>Disease Types</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔒</div>
+            <div class="stat-content">
+              <h3>100%</h3>
+              <p>Secure & Private</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const diseases = [
+      { id: 'brain-tumor', name: 'Brain Tumor', icon: '🧠', description: 'MRI Image Analysis' },
+      { id: 'malaria', name: 'Malaria', icon: '🩸', description: 'Blood Smear Analysis' },
+      { id: 'pneumonia', name: 'Pneumonia', icon: '🫁', description: 'Chest X-Ray Analysis' },
+      { id: 'breast-cancer', name: 'Breast Cancer', icon: '🎗️', description: 'Mammography Analysis' },
+      { id: 'skin-cancer', name: 'Skin Cancer', icon: '🦠', description: 'Skin Lesion Analysis' }
+    ];
+
+    let selectedDisease = '';
+
+    const diseaseList = document.getElementById('disease-list');
+
+    diseases.forEach(d => {
+      const btn = document.createElement('button');
+      btn.className = 'disease-card';
+      btn.innerHTML = `
+        <div class="disease-icon">${d.icon}</div>
+        <div class="disease-info">
+          <h3>${d.name}</h3>
+          <p>${d.description}</p>
+        </div>
+        <div class="check-icon" style="display:none;">✓</div>
+      `;
+
+      btn.onclick = () => {
+        selectedDisease = d.id;
+
+        document.querySelectorAll('.disease-card').forEach(card => {
+          card.classList.remove('active');
+          card.querySelector('.check-icon').style.display = 'none';
+        });
+
+        btn.classList.add('active');
+        btn.querySelector('.check-icon').style.display = 'flex';
+
+        document.getElementById('upload-hint').style.display = 'none';
+      };
+
+      diseaseList.appendChild(btn);
+    });
+
+    const imageUpload = document.getElementById('image-upload');
+    const previewImg = document.getElementById('preview-img');
+
+    imageUpload.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      if (!selectedDisease) {
+        alert('Please select a disease type first');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        previewImg.src = event.target.result;
+        previewImg.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('disease', selectedDisease);
+
+      const response = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      document.getElementById('result-card').style.display = 'block';
+      document.getElementById('prediction').textContent = data.prediction;
+      document.getElementById('confidence-value').textContent =
+        (data.confidence * 100).toFixed(1) + "%";
+      document.getElementById('confidence-fill').style.width =
+        (data.confidence * 100) + "%";
+
+      const statusBadge = document.getElementById('status-badge');
+
+      if (data.status === 'positive') {
+        statusBadge.textContent = '⚠️ Detected';
+        statusBadge.className = 'status-badge positive';
+      } else {
+        statusBadge.textContent = '✓ Normal';
+        statusBadge.className = 'status-badge negative';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">🗓️</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">Book appointment</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/doctors" class="nav-link">Find Doctors</a>
+          <a href="/book-appointment" class="nav-link nav-link--active">Book Appointment</a>
+          <a href="/my-appointments" class="nav-link">My Appointments</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-layout-full">
+      <section class="card-glass fade-in">
+        <header>
+          <h1 class="section-heading">Confirm your appointment</h1>
+          <p class="section-subtitle">
+            Select a date and time. In a real deployment, these slots would be loaded from your scheduling backend.
+          </p>
+        </header>
+
+        <div style="display:grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.2fr); gap:24px; margin-top:18px;">
+          <!-- Calendar + doctor summary -->
+          <div>
+            <div class="form-field">
+              <label class="form-label" for="appointment_date">Date</label>
+              <input
+                id="appointment_date"
+                type="date"
+                class="input"
+                data-appointment="date"
+              >
+            </div>
+
+            <div class="card-glass" style="margin-top:16px;">
+              <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">Doctor</h2>
+              <p class="section-subtitle">
+                You’re booking with the suggested specialist based on your last AI diagnosis.
+              </p>
+              <div class="result-doctor-card" style="margin-top:10px;">
+                <div class="doctor-avatar">👩‍⚕️</div>
+                <div class="doctor-meta">
+                  <div class="doctor-name">Dr. Elena Rao</div>
+                  <div class="doctor-specialty">Neuro‑oncologist</div>
+                  <p class="section-subtitle" style="font-size:12px; margin-top:4px;">
+                    Hospitals: City Neuro Center · St. Mary’s Oncology
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time slots + confirm -->
+          <div>
+            <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">Available time slots</h2>
+            <p class="section-subtitle">
+              Choose a time in your local timezone. All times are illustrative demo values.
+            </p>
+
+            <div class="pill-select-row" style="margin-top:12px;">
+              <button type="button" class="pill-select-option" data-slot="09:00">09:00</button>
+              <button type="button" class="pill-select-option" data-slot="10:30">10:30</button>
+              <button type="button" class="pill-select-option" data-slot="14:00">14:00</button>
+              <button type="button" class="pill-select-option" data-slot="16:15">16:15</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="margin-top:18px; width:100%;"
+              data-appointment="confirm"
+            >
+              Confirm Appointment
+            </button>
+
+            <p class="section-subtitle" style="font-size:12px; margin-top:8px;">
+              You’ll receive a confirmation email and calendar invite once the backend confirms this slot.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Success modal -->
+      <div
+        class="card-glass"
+        style="position:fixed; inset:0; margin:auto; max-width:380px; height:max-content; display:none; align-items:center; justify-content:center; z-index:50; background:rgba(15,23,42,0.4);"
+        data-appointment="success-modal"
+      >
+        <div style="background:var(--color-surface); border-radius:20px; padding:22px 20px; box-shadow:var(--shadow-soft); max-width:360px; width:100%; text-align:center;">
+          <div class="upload-icon-circle" style="margin-bottom:10px; background:rgba(16,185,129,0.12); color:var(--color-success);">
+            ✓
+          </div>
+          <h2 class="section-heading" style="font-size:20px; margin-bottom:4px;">Appointment booked</h2>
+          <p class="section-subtitle">
+            This confirmation is for demo purposes. Your real backend should send email and SMS notifications.
+          </p>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="margin-top:14px; width:100%;"
+            data-appointment="close-modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. Wire this page to your scheduling API for live availability.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

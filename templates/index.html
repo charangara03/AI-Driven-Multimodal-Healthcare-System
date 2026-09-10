@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Healthcare - AI-Powered Medical Diagnosis Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">🧠</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">AI Diagnosis & Appointments</div>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="/" class="nav-link nav-link--active">Home</a>
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/doctors" class="nav-link">Find Doctors</a>
+          <a href="/ai-diagnosis" class="nav-link">AI Diagnosis</a>
+        </nav>
+
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Sign In</a>
+          <a href="/signup" class="btn btn-primary">Sign Up</a>
+          <button class="btn btn-ghost-icon navbar-toggle" type="button">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="page-container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-copy fade-in">
+          <div class="hero-copy-eyebrow">
+            <span class="hero-copy-eyebrow-label">New</span>
+            <span class="text-muted">AI-assisted triage & automatic doctor routing</span>
+          </div>
+          <h1 class="hero-title">
+            AI-Powered <span class="hero-highlight">Medical Diagnosis</span> &
+            Smart Appointment Scheduling.
+          </h1>
+          <p class="hero-subtitle">
+            Upload MRI or radiology images, receive instant AI analysis, and get automatically
+            matched with the right specialist — all inside a secure healthcare-grade platform.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="/ai-diagnosis" class="btn btn-primary">
+              <span>Start Diagnosis</span>
+              <span>→</span>
+            </a>
+            <a href="/dashboard" class="btn btn-outline">View Dashboard</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-avatars">
+              <span>👩‍⚕️</span>
+              <span>🧑‍⚕️</span>
+              <span>+12k</span>
+            </div>
+            <span>Trusted by clinicians and researchers worldwide.</span>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-in">
+          <div class="hero-orbit">
+            <div class="hero-orbit-grid"></div>
+            <div class="hero-orbit-content">
+              <div class="hero-orbit-header">
+                <div class="hero-orbit-pill">
+                  <span class="badge-dot badge-dot--online"></span>
+                  <span>Real-time AI Monitor</span>
+                </div>
+                <span class="chip chip-success">HIPAA-ready UI</span>
+              </div>
+
+              <div class="hero-orbit-metrics">
+                <div class="hero-orbit-metric">
+                  <div class="hero-orbit-metric-label">Avg. turnaround</div>
+                  <div class="hero-orbit-metric-value">2.3s</div>
+                </div>
+                <div class="hero-orbit-metric">
+                  <div class="hero-orbit-metric-label">Cases today</div>
+                  <div class="hero-orbit-metric-value" data-counter="384">0</div>
+                </div>
+                <div class="hero-orbit-metric">
+                  <div class="hero-orbit-metric-label">Routes automated</div>
+                  <div class="hero-orbit-metric-value">92%</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit-float orbit-float--1">🧬</div>
+            <div class="orbit-float orbit-float--2">🫁</div>
+            <div class="orbit-float orbit-float--3">🧪</div>
+          </div>
+
+          <div class="floating-pills">
+            <div class="floating-pill">Brain MRI</div>
+            <div class="floating-pill">Chest X‑Ray</div>
+            <div class="floating-pill">Dermoscopy</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="section fade-in">
+        <div>
+          <h2 class="section-heading">AI disease coverage out of the box</h2>
+          <p class="section-subtitle">
+            Start with pre-configured models for high-impact pathologies, then plug in your own
+            pipelines via the API.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3 class="feature-title">Brain Tumor Detection</h3>
+            <p class="feature-desc">MRI-based glioma, meningioma, and pituitary tumor analysis.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🫁</div>
+            <h3 class="feature-title">Pneumonia Detection</h3>
+            <p class="feature-desc">AI triage for chest X‑rays to highlight suspected pneumonia.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🩸</div>
+            <h3 class="feature-title">Malaria Detection</h3>
+            <p class="feature-desc">Automatic parasite detection on blood smear images.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🦠</div>
+            <h3 class="feature-title">Skin Cancer Detection</h3>
+            <p class="feature-desc">Dermoscopy analysis with risk heat‑maps and triage suggestions.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="section fade-in">
+        <div>
+          <h2 class="section-heading">How it works</h2>
+          <p class="section-subtitle">
+            A guided experience from image upload to confirmed appointment — designed for both
+            patients and clinicians.
+          </p>
+        </div>
+
+        <div class="section-steps">
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <h3 class="step-title">Upload Image</h3>
+            <p class="step-desc">Securely upload MRI, X‑ray, CT or dermoscopy images from any device.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <h3 class="step-title">AI Analysis</h3>
+            <p class="step-desc">Our models run in seconds and surface a clear, explainable risk score.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <h3 class="step-title">Doctor Assigned</h3>
+            <p class="step-desc">The right specialist is auto‑suggested based on disease and urgency.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">04</div>
+            <h3 class="step-title">Book Appointment</h3>
+            <p class="step-desc">Confirm a time slot instantly and sync with your calendar.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. For clinical decision support only — not a replacement for a licensed physician.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

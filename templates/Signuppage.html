@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - AI Healthcare</title>
+
+<style>
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== PAGE LAYOUT ===== */
+.signup-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f6fa, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.signup-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* ===== LEFT SIDE ===== */
+.signup-form-section {
+  padding: 50px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.logo-icon {
+  font-size: 32px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: #4C7DFF;
+}
+
+.signup-title {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.signup-subtitle {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-group input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #4C7DFF;
+  outline: none;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+}
+
+.error-message {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+.signup-button {
+  margin-top: 10px;
+  padding: 14px;
+  background: linear-gradient(135deg, #6AA9FF, #4C7DFF);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.social-login {
+  display: flex;
+  gap: 10px;
+}
+
+.social-button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.signup-footer {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-footer a {
+  color: #4C7DFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ===== RIGHT SIDE ===== */
+.signup-visual-section {
+  background: linear-gradient(135deg, #4C7DFF, #3F5FEA);
+  color: white;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.visual-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.visual-card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.visual-card h3 {
+  margin-bottom: 6px;
+}
+
+.graph-illustration {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  align-items: flex-end;
+}
+
+.graph-bar {
+  width: 15px;
+  background: white;
+  border-radius: 4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .signup-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .signup-visual-section {
+    display: none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="signup-container">
+  <div class="signup-wrapper">
+
+    <!-- LEFT -->
+    <div class="signup-form-section">
+
+      <div class="logo-section">
+        <div class="logo-icon">🏥</div>
+        <div class="logo-text">AI Healthcare</div>
+      </div>
+
+      <h2 class="signup-title">Create Your Account</h2>
+      <p class="signup-subtitle">Join us to get started with AI-powered healthcare</p>
+
+      <form onsubmit="handleSubmit(event)" class="signup-form">
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="fullName">
+          <span class="error-message" id="fullNameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email">
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone">
+          <span class="error-message" id="phoneError"></span>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password">
+          <span class="error-message" id="passwordError"></span>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="confirmPassword">
+          <span class="error-message" id="confirmPasswordError"></span>
+        </div>
+
+        <button type="submit" class="signup-button">Sign Up</button>
+
+      </form>
+
+      <div class="divider">Or continue with</div>
+
+      <div class="social-login">
+        <button class="social-button">Google</button>
+        <button class="social-button">Facebook</button>
+      </div>
+
+      <p class="signup-footer">
+        Already have an account?
+        <a href="#">Sign In</a>
+      </p>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="signup-visual-section">
+      <div class="visual-content">
+
+        <div class="visual-card">
+          <h3>AI-Powered Diagnosis</h3>
+          <p>Advanced deep learning models for accurate medical image analysis</p>
+        </div>
+
+        <div class="visual-card">
+          <h3>Fast & Reliable</h3>
+          <p>Instant results with high accuracy</p>
+        </div>
+
+        <div class="visual-card">
+          <h3>Secure & Private</h3>
+          <p>Your medical data is encrypted and protected</p>
+        </div>
+
+        <div class="graph-illustration">
+          <div class="graph-bar" style="height:60%"></div>
+          <div class="graph-bar" style="height:80%"></div>
+          <div class="graph-bar" style="height:45%"></div>
+          <div class="graph-bar" style="height:90%"></div>
+          <div class="graph-bar" style="height:70%"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+
+  let valid = true;
+
+  const fullName = document.getElementById("fullName");
+  const email = document.getElementById("email");
+  const phone = document.getElementById("phone");
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirmPassword");
+
+  document.querySelectorAll(".error-message").forEach(el => el.textContent = "");
+
+  if (!fullName.value.trim()) {
+    document.getElementById("fullNameError").textContent = "Full name required";
+    valid = false;
+  }
+
+  if (!/\S+@\S+\.\S+/.test(email.value)) {
+    document.getElementById("emailError").textContent = "Valid email required";
+    valid = false;
+  }
+
+  if (!phone.value.trim()) {
+    document.getElementById("phoneError").textContent = "Phone required";
+    valid = false;
+  }
+
+  if (password.value.length < 8) {
+    document.getElementById("passwordError").textContent = "Minimum 8 characters";
+    valid = false;
+  }
+
+  if (password.value !== confirmPassword.value) {
+    document.getElementById("confirmPasswordError").textContent = "Passwords do not match";
+    valid = false;
+  }
+
+  if (valid) {
+    alert("Account Created Successfully!");
+  }
+}
+</script>
+
+</body>
+</html>

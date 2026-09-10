@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - AI Healthcare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="logo">
+          <div class="logo-badge">👤</div>
+          <div>
+            <div class="logo-text-main">AI Healthcare</div>
+            <div class="logo-text-sub">Profile & History</div>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="/dashboard" class="nav-link">Dashboard</a>
+          <a href="/my-appointments" class="nav-link">My Appointments</a>
+          <a href="/chatbot" class="nav-link">AI Chatbot</a>
+          <a href="/profile" class="nav-link nav-link--active">Profile</a>
+        </nav>
+        <div class="nav-cta-group">
+          <button class="btn btn-ghost-icon" type="button" data-toggle="dark-mode" aria-label="Toggle dark mode">🌙</button>
+          <a href="/signin" class="btn btn-outline">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="profile-layout">
+      <!-- Left: profile card & editable details -->
+      <section class="card-glass fade-in">
+        <div class="profile-avatar-large">JD</div>
+        <h1 class="section-heading" style="font-size:22px; margin-bottom:2px;">Jordan Doe</h1>
+        <p class="section-subtitle">Patient · Joined 2025</p>
+
+        <form method="POST" action="/profile" class="auth-form" style="margin-top:14px;">
+          <div class="form-field">
+            <label class="form-label" for="profile_full_name">Full name</label>
+            <input id="profile_full_name" name="full_name" type="text" class="input" value="Jordan Doe">
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="profile_email">Email</label>
+              <input id="profile_email" name="email" type="email" class="input" value="jordan@example.com">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="profile_phone">Phone</label>
+              <input id="profile_phone" name="phone" type="tel" class="input" value="+1 202 555 0148">
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="profile_notes">Notes for care team</label>
+            <textarea id="profile_notes" name="notes" class="input" rows="3" style="resize:vertical;">Minimal headaches recently, tracking outcomes after last MRI.</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top:8px; width:100%;">
+            Save changes
+          </button>
+        </form>
+      </section>
+
+      <!-- Right: medical & appointment history -->
+      <section class="card-glass fade-in">
+        <h2 class="section-heading" style="font-size:18px; margin-bottom:4px;">Medical history</h2>
+        <p class="section-subtitle">
+          High-level history pulled from your EHR or local database. The entries below are static demo data.
+        </p>
+
+        <div class="history-list">
+          <div>
+            <strong>2024–2025</strong> · Monitored brain lesions with periodic MRI.
+          </div>
+          <div>
+            <strong>2023</strong> · Treated for mild pneumonia; full recovery.
+          </div>
+          <div>
+            <strong>2021</strong> · Negative screening for malaria during travel.
+          </div>
+        </div>
+
+        <h2 class="section-heading" style="font-size:18px; margin-top:18px; margin-bottom:4px;">
+          AI diagnosis history
+        </h2>
+        <ul class="history-list">
+          <li>• Brain MRI · Glioma suspected · Confidence 87% · Linked to Dr. Rao.</li>
+          <li>• Chest X‑ray · Pneumonia low risk · Confidence 62% · Linked to Dr. Chen.</li>
+          <li>• Malaria smear · Negative · Confidence 94% · Linked to Dr. Yusuf.</li>
+        </ul>
+
+        <h2 class="section-heading" style="font-size:18px; margin-top:18px; margin-bottom:4px;">
+          Appointment history
+        </h2>
+        <ul class="history-list">
+          <li>• Completed · Neuro‑oncology consult · 2 weeks ago.</li>
+          <li>• Completed · Infectious disease tele‑visit · Last month.</li>
+          <li>• Cancelled · Radiology follow‑up · 3 months ago.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© {{ 2025 }} AI Healthcare. Connect this profile to your user & EHR data sources.</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
